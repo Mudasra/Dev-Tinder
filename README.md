@@ -9,3 +9,8 @@
 - create outlet in body component
 - create footer
 - create login page
+- install react-redux and @reduxjs/toolkit
+- configure store 
+- create store
+- add provider to app.js or main.js
+- add reducer to store

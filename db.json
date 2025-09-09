@@ -1,0 +1,33 @@
+{
+  "feed": [
+    {
+      "id": 1,
+      "name": "Akshay",
+      "age": 30,
+      "bio": "Frontend Engineer | Loves React",
+      "avatar": "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Riya",
+      "age": 25,
+      "bio": "UI/UX Designer | Coffee Lover",
+      "avatar": "https://randomuser.me/api/portraits/women/2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Rahul",
+      "age": 28,
+      "bio": "Fullstack Developer | Node.js + React",
+      "avatar": "https://randomuser.me/api/portraits/men/3.jpg"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "emailId": "test@test.com",
+      "password": "123456",
+      "name": "Test User"
+    }
+  ]
+}
