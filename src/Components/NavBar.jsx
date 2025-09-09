@@ -1,69 +1,57 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
-const NavBar = () => {
-  const user = useSelector((state) => state.user);
+const NavBar = ({user , onLogout}) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    onLogout;
+    localStorage.removeItem("user");
+    navigate("/login");
+  }
   return (
     <div className="min-h-[4rem]">
-      <div className="navbar bg-base-300 shadow-sm">
+      <div className="navbar bg-base-300 shadow-md">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">DevTinder</a>
+          <Link to="/feed" className="ml-2 text-xl">DevTinder</Link>
         </div>
-        <div className="flex gap-2">
-          <button className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {" "}
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                />{" "}
-              </svg>
-              <span className="badge badge-xs badge-primary indicator-item"></span>
-            </div>
-          </button>
-          {user && (
-            <div className="mx-5 dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
+
+        
+        <div className="flex-none gap-3">
+        {user ? (
+          <>
+            <Link to="/feed" className="btn btn-ghost">Feed</Link>
+            <Link to="/contact" className="btn btn-ghost">Contact</Link>
+            <Link to="/profile" className="btn btn-ghost">Profile</Link>
+
+            <div className="dropdown dropdown-end">
+              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    alt="user-avatar"
+                    src={`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJcAAACUCAMAAACp1UvlAAAAZlBMVEX///8AAAD8/Pzo6Ojt7e0tLS3d3d29vb1FRUWnp6f5+fnj4+MqKirw8PC0tLQ1NTUICAh0dHRSUlIRERGUlJTDw8MbGxvJyckiIiJjY2OKiop8fHxLS0uCgoI9PT2cnJzS0tJra2vuwsyhAAADeklEQVR4nO2b23KCMBBAG5AgIPe7oOL//2RFi8VyS3Sz6cOel844TjmTDZvNJn59EQRBEARBEARBEARhlrbjOHZp6hYZsSubsIhYT1SETbnTLXSHZyF7Jcw83VJf5jFlU9Kj5njahxmrHsvWaOXGC1Y9satLy0xWtBhLNM0ybymGA5UWMf73NZwScnwtd2u0eg7oc8ytBbQYu2KLHYW0GMtwtTpBLcZQp5gvFsWeGjOSgbAWY5iJf25NXCLE08oltBjr0LzWlsUpDZaWeZby2mPVPOJJ4kGH5OVIejlIXqK5fgBrgokn1QdnJK9W0qv6p14Fktd6+azPSy6t4q1EmaRXi+QlU030HJG8SkkvrLzqya2PKVbJKrjnGEh8JC/JiY+39fCkvBB33XsJrRpPS6qQ7hC9DPGUf0LUkplhyM1W0ZoVu21oXP9hFO+IVGGY7+KAt50sEi2dfH9rxBJNnd+Nvu8VbV2ccFq2Si86hLjx+LuY+IeWr4HZl+vPE5yHmTE5Heppgx8rB/N8wb/2z45/po/n/C0TE/vnPfRjzHnGh+fnwyeufYyTfXiwzm19Cp4azyCjxLKsngMz3lD4pse5tzN+P/ltY1Slei17HLHKXpo8rl2Nv6h8mQyi17l0nR+K8vr6tShQrDV99w4Ofx00lzszZzRKxfJo+sBbNOvMHnqVpp3V1dyXonz1P3/EagMzskJrVnugU6Ul2e/9y1lR/9eQ2QXNsTe2H/IGsm2cKUqWcrlDjnlUzP3tY+NtFHToPo9iD3ivwrNAvCzoZsVKZSoF8MbNB9JiDLYYgxou4AH7MNOPAc36sh3oNSC7wLInHGskcFpyfcst4FLFBdQLbJU0IMN4CyRUWcFhcv2ABbVtg3wbe6BKfbik+gAotQrdQJMB6LYabJbogckUMJXXGJgqDKKAfgWonC5hJ9gBrIvSydz32iLtoLRuYoB1DqDWLeVDhfIA3KPjspdM5mnBW4fmp12AHhVX1EzZa0xTaiWdE6P5UCtW0zf5tLBQeL2jfH+SnZX2pN13Y6n81KN8p69jITTw/YvsqhRlOOejntyFzCPekRpvRMcsjTs0q7vZRWTFrDL8X57s8qRYlSqe533YmE6zVACdT47On6gZOx40bVX8Tre0qNpTwPWduY8xuzxweoK8+0+/zCQIgiAIgiAIgiAIPXwD4sUtUHDV0LUAAAAASUVORK5CYII=`}
                   />
                 </div>
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
+                  <p className="font-medium">{user}</p>
                 </li>
                 <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a>Logout</a>
+                  <button onClick={handleLogout} className="btn btn-error btn-sm">
+                    Logout
+                  </button>
                 </li>
               </ul>
             </div>
-          )}
-        </div>
+          </>
+        ) : (
+          <Link to="/login" className="btn btn-primary">Login</Link>
+        )}
+      </div>
       </div>
     </div>
   );

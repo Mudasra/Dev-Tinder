@@ -14,3 +14,8 @@
 - create store
 - add provider to app.js or main.js
 - add reducer to store
+- shows a login form with email and password
+- input validation
+- protected routes > If user isn’t logged in, trying to visit /feed, /profile, or /contact → redirects back to /login
+- presisted login state > user info saved in local storage
+- dynamic navbar - login / logout functionality depending on whether the user is logged in or logged out.

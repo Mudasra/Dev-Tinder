@@ -22,8 +22,8 @@ function App() {
   return (
     <>
     <Provider store={appStore}>
-    <NavBar/>
        <BrowserRouter basename="/">
+    <NavBar user={user} onLogout={() => setUser(null)}/>
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<Login onLogin={setUser} />} />
