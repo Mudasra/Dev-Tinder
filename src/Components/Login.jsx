@@ -1,19 +1,24 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { login } from "../utils/userSlice";
 
-const Login = ({onLogin}) => {
+const Login = () => {
   const [email , setEmail] = useState("");
   const [password , setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = (e) => {
     e.preventDefault();
     if(email && password){
-      onLogin(email);
-      navigate("/feed")
+      dispatch(login({email, avatar: "/avater.png"}));
+       navigate("/feed")
     }else{
-      alert("Please enter both email and password");
+      alert("Please enter both email and password.")
     }
+    
+   
   }
   return (
     <div className="flex justify-center items-center min-h-screen bg-base-200">

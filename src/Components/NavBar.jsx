@@ -1,14 +1,18 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../utils/userSlice";
 
-const NavBar = ({user , onLogout}) => {
+const NavBar = () => {
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    onLogout;
-    localStorage.removeItem("user");
-    navigate("/login");
+  const hadleLogout = () => {
+    dispatch(logout());
+    navigate("/login")
   }
+
   return (
     <div className="min-h-[4rem]">
       <div className="navbar bg-base-300 shadow-md">
@@ -38,10 +42,10 @@ const NavBar = ({user , onLogout}) => {
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <p className="font-medium">{user}</p>
+                  <p className="font-medium mb-2">{user.email}</p>
                 </li>
                 <li>
-                  <button onClick={handleLogout} className="btn btn-error btn-sm">
+                  <button onClick={hadleLogout} className="btn btn-error btn-sm">
                     Logout
                   </button>
                 </li>
