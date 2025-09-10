@@ -35,11 +35,11 @@ const Contact = () => {
     if (submitted) {
       timer = setTimeout(() => {
         setSubmitted(false);
-      }, 3000);
+      }, 1000);
     }
 
     return () => clearTimeout(timer);
-  } , [submitted]);
+  }, [submitted]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 p-6">
@@ -106,43 +106,42 @@ const Contact = () => {
         {/* right side - contact form*/}
         <div className="card p-6 bg-base-100 shadow-lg">
           <h2 className="text-2xl font-bold mb-4">Send a message</h2>
-          {submitted ? (
-            <div className="alert alert-success shadow-lg flex justify-center">
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="text "
+              name="name"
+              placeholder="Name"
+              value={form.name}
+              onChange={handleChange}
+              className="input input-bordered w-full"
+            />
+
+            <input
+              type="email "
+              name="email"
+              placeholder="Email"
+              value={form.email}
+              onChange={handleChange}
+              className="input input-bordered w-full"
+            />
+
+            <textarea
+              name="message"
+              placeholder="Your message"
+              value={form.message}
+              onChange={handleChange}
+              className="w-full textarea textarea-bordered"
+              rows="4"
+            />
+            {submitted ? (<div className="alert alert-success shadow-lg flex justify-center">
               Thanks! Your message has been sent.
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text "
-                name="name"
-                placeholder="Name"
-                value={form.name}
-                onChange={handleChange}
-                className="input input-bordered w-full"
-              />
+            </div>):
 
-              <input
-                type="email "
-                name="email"
-                placeholder="Email"
-                value={form.email}
-                onChange={handleChange}
-                className="input input-bordered w-full"
-              />
-
-              <textarea
-                name="message"
-                placeholder="Your message"
-                value={form.message}
-                onChange={handleChange}
-                className="w-full textarea textarea-bordered"
-                rows="4"
-              />
-              <button type="submit" className="btn btn-primary w-full">
-                Submit
-              </button>
-            </form>
-          )}
+            (<button type="submit" className="btn btn-primary w-full">
+              Submit
+            </button>)}
+          </form>
         </div>
       </div>
     </div>
