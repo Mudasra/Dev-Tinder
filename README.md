@@ -27,7 +27,10 @@
 - Matches Page → displays all liked profiles.
 - clears the whole match page in one go 
 - remove matches individually
--  
+- contact page - split into two sections - contact info & contact form
+- Form feedback: After submission, a success alert is shown.
+- Profile page > Allows the logged-in user to view and edit their profile.
+- 
 
 
 

@@ -12,8 +12,16 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if(email && password){
-      dispatch(login({email, avatar: "/avater.png"}));
-       navigate("/feed")
+      const newUser = {
+        email,
+        name: email.split("@")[0],
+        // avatar: "/avatar.png",
+        avatar: `https://i.pravatar.cc/150?u=${email}`,
+        bio: "Hey! I'm new here on devTinder 👋", 
+        skills: ["React" , "Rdux"],
+      }
+      dispatch(login(newUser));
+      navigate("/feed")
     }else{
       alert("Please enter both email and password.")
     }

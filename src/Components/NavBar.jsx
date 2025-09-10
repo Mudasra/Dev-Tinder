@@ -5,7 +5,7 @@ import { logout } from "../utils/userSlice";
 
 const NavBar = () => {
   const user = useSelector((state) => state.user.user);
-  const matches = useSelector((state) => state.feed.matches)
+  const matches = useSelector((state) => state.feed.matches);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -30,14 +30,14 @@ const NavBar = () => {
                 Home
               </Link>
               <Link to="/matches" className="btn btn-ghost">
-                Matches 
-                <span className='badge badge-primary ml-2'> {matches.length}</span>
+                Matches
+                <span className="badge badge-primary ml-2">
+                  {" "}
+                  {matches.length}
+                </span>
               </Link>
               <Link to="/contact" className="btn btn-ghost">
                 Contact
-              </Link>
-              <Link to="/profile" className="btn btn-ghost">
-                Profile
               </Link>
 
               <div className="dropdown dropdown-end">
@@ -57,6 +57,14 @@ const NavBar = () => {
                   tabIndex={0}
                   className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                 >
+                  <li>
+                    <Link
+                      to="/profile"
+                      className="flex justify-center font-medium mb-2"
+                    >
+                      Profile
+                    </Link>
+                  </li>
                   <li>
                     <p className="font-medium mb-2">{user.email}</p>
                   </li>

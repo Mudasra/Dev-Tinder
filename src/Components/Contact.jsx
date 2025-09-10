@@ -10,12 +10,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
   const [form, setform] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
-
+  const user = useSelector((state) => state.user);
   const handleChange = (e) => {
     setform({ ...form, [e.target.name]: e.target.value });
   };
@@ -30,6 +31,7 @@ const Contact = () => {
     setform({ name: "", email: "", message: "" });
   };
 
+
   useEffect(() => {
     let timer;
     if (submitted) {
@@ -42,7 +44,14 @@ const Contact = () => {
   }, [submitted]);
 
   return (
+    
     <div className="min-h-screen flex items-center justify-center bg-base-200 p-6">
+           <div className="p-6">
+      <h2 className="text-2xl font-bold">Profile</h2>
+      <p className="mt-2 text-lg">Name: {user?.name || "No name set"}</p>
+      <p className="mt-1 text-gray-600">Bio: {user?.bio || "No bio yet"}</p>
+      <p className="mt-1 text-gray-600">Skills: {user?.skills || "No skills added"}</p>
+    </div>
       <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8">
         {/*left side - contact info */}
         <div className="card bg-base-100 p-6 flex flex-col justify-between">
@@ -149,3 +158,9 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+
+
+
+
