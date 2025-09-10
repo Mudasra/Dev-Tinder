@@ -15,16 +15,14 @@ const feedSlice = createSlice({
       if(profile) {
         state.matches.push(profile);
         state.matchPopup = profile;
-        state.currentIndex = (state.currentIndex + 1) % state.profiles.length;
       }
     },
     passProfile: (state) => {
-      if(state.currentIndex < state.profiles.length){
         state.currentIndex = (state.currentIndex + 1) % state.profiles.length;
-      }
     },
     closeMatchPopup: (state) => {
       state.matchPopup = null;
+      state.currentIndex = (state.currentIndex + 1) % state.profiles.length;
     }
   },
 });

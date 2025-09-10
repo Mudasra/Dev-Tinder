@@ -20,3 +20,7 @@
 - presisted login state > user info saved in local storage
 - dynamic navbar - login / logout functionality depending on whether the user is logged in or logged out.
 - redux integration > global login/ logout state management
+- swipe-like profile browsing
+- loop profiles in cicular fashion
+- like / pass action
+- match popup

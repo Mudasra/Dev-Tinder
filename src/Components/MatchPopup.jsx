@@ -1,20 +1,32 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { closeMatchPopup } from "../utils/feedSlice";
 
 const MatchPopup = () => {
-  const match = useSelector((state) => state.feed.MatchPopup)
+  const dispatch = useDispatch();
+  const match = useSelector((state) => state.feed.matchPopup);
 
-  if(!match) return null;
-// fixed inset-0 flex items-center justify-center bg-black bg-opacity-40
+  if (!match) return null;
+
   return (
-    <div className=''>
-      <div>
-        <h2>🎉 It's a match!</h2>
-        <p>You matched with {match.name}</p>
-        <img src={match.avatar} alt={match.name}/>
+    <div className="fixed inset-0 flex items-center justify-center bg-base-200 bg-opacity-60">
+      <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+        <h2 className="text-xl font-bold mb-2 text-blue-500">🎉 It’s a Match!</h2>
+        <img
+          src={match.avatar}
+          alt={match.name}
+          className="w-32 h-32 rounded-full mx-auto mb-2"
+        />
+        <p className="text-blue-500">{match.name}</p>
+        <button
+          className="btn btn-primary mt-4"
+          onClick={() => dispatch(closeMatchPopup())}
+        >
+          Continue
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MatchPopup
+export default MatchPopup;
