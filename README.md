@@ -25,6 +25,9 @@
 - match popup
 - like / pass action
 - Matches Page → displays all liked profiles.
+- clears the whole match page in one go 
+- remove matches individually
+-  
 
 
 

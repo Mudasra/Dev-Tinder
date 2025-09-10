@@ -37,6 +37,7 @@ const feedSlice = createSlice({
       state.currentIndex = (state.currentIndex + 1) % state.profiles.length;
     },
     removeMatch: (state , action) => {
+            console.log("removing the id" , action.payload)
       state.matches = state.matches.filter((m) => m.id !== action.payload);
       localStorage.setItem("matches" , JSON.stringify(state.matches));
     },
