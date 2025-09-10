@@ -22,5 +22,29 @@
 - redux integration > global login/ logout state management
 - swipe-like profile browsing
 - loop profiles in cicular fashion
-- like / pass action
 - match popup
+- like / pass action
+- Matches Page → displays all liked profiles.
+
+
+
+
+
+
+
+
+
+# Tech Stack
+
+- React + React Router
+- Redux Toolkit
+- DaisyUI + TailwindCSS
+- LocalStorage for persistence
+
+
+
+# Setup Instructions
+
+- Clone repo
+- Install dependencies → npm install
+- Run → npm run dev

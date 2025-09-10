@@ -7,6 +7,7 @@ import { Provider, useSelector } from "react-redux";
 import appStore from "./utils/appStore";
 import Feed from "./Components/Feed";
 import Contact from "./Components/Contact";
+import MatchPage from "./Components/MatchPage";
 
 function AppContent() {
   const user = useSelector((state) => state.user.user);
@@ -15,21 +16,16 @@ function AppContent() {
     <>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Navigate to="/login" replace/>} />
         <Route path="/login" element={<Login />} />
-        <Route
-          path="/feed"
-          element={user ? <Feed /> : <Navigate to="/login" replace />}
-        />
-        <Route
-          path="/profile"
-          element={user ? <Profile /> : <Navigate to="/login" replace />}
-        />
-        <Route
-          path="/contact"
-          element={user ? <Contact /> : <Navigate to="/login" replace />}
-        />
-        <Route path="/body" element={<Body />} />
+        {user ?(
+        <>
+        <Route path="/feed" element={<Feed />}/>
+        <Route path="/matches" element={<MatchPage />}/>
+        <Route path="/profile" element={<Profile />}/>
+        <Route path="/contact" element={<Contact />}/>
+        </>)
+        : <Navigate to="/login" replace/>}
       </Routes>
     </>
   );
