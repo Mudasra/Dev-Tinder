@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../utils/userSlice";
 
 const NavBar = () => {
@@ -8,7 +8,6 @@ const NavBar = () => {
   const matches = useSelector((state) => state.feed.matches)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const hadleLogout = () => {
     dispatch(logout());
@@ -27,16 +26,13 @@ const NavBar = () => {
         <div className="flex-none gap-3">
           {user ? (
             <>
-              {location.pathname === "/feed" ? (
-                <Link to="/matches" className="btn btn-ghost">
-                  Matches 
-                  <span className='badge badge-primary ml-2'> {matches.length}</span>
-                </Link>
-              ) : location.pathname === "/matches" ? (
-                <Link to="/feed" className="btn btn-ghost">
-                  Feed
-                </Link>
-              ) : null}
+              <Link to="/feed" className="btn btn-ghost">
+                Home
+              </Link>
+              <Link to="/matches" className="btn btn-ghost">
+                Matches 
+                <span className='badge badge-primary ml-2'> {matches.length}</span>
+              </Link>
               <Link to="/contact" className="btn btn-ghost">
                 Contact
               </Link>

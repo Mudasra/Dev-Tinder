@@ -10,7 +10,7 @@ const MatchPopup = () => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-base-200 bg-opacity-60">
-      <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+      <div className="bg-white p-10 rounded-xl shadow-lg text-center">
         <h2 className="text-xl font-bold mb-2 text-blue-500">🎉 It’s a Match!</h2>
         <img
           src={match.avatar}
