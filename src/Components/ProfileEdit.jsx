@@ -1,117 +1,54 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { updateProfile } from "../utils/userSlice";
 
-const ProfileEdit = () => {
+const ProfilePage = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
 
   const [formData, setFormData] = useState({
-    name: user?.name || "",
-    bio: user?.bio || "",
-    skills: user?.skills || "",
-    avatar: user?.avatar || "",
+    firstName: user?.firstName || "",
+    lastName: user?.lastName || "",
+    age: user?.age || "",
+    gender: user?.gender || "",
+    photo: user?.photo || "",
+    about: user?.about || "",
   });
-
-  const [saved, setSaved] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSave = () => {
     dispatch(updateProfile(formData));
-    setSaved(true);
   };
 
-  // Automatically hide the success alert after 3 seconds
-  useEffect(() => {
-    if (saved) {
-      const timer = setTimeout(() => setSaved(false), 3000);
-      return () => clearTimeout(timer); // cleanup on unmount
-    }
-  }, [saved]);
-
   return (
-    <div className="flex justify-center items-center min-h-screen p-6">
-      <div className="card bg-base-200 shadow-xl w-full max-w-lg">
-        <div className="card-body">
-          <h2 className="card-title text-2xl mb-4">Your Profile</h2>
-
-          {/* Avatar */}
-          <div className="flex flex-col items-center mb-4">
-            {formData.avatar ? (
-              <img
-                src={formData.avatar}
-                alt="avatar"
-                className="w-24 h-24 object-cover rounded-full border-2 border-primary mb-4 transition-all duration-300 hover:scale-105"
-              />
-            ) : (
-              <div className="w-24 h-24 bg-gray-300 rounded-full mb-4 flex items-center justify-center text-gray-600">
-                No Avatar
-              </div>
-            )}
-          </div>
-
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter name"
-              value={formData.name}
-              onChange={handleChange}
-              className="input input-bordered w-full"
-            />
-            <textarea
-              name="bio"
-              placeholder="Enter bio"
-              value={formData.bio}
-              onChange={handleChange}
-              className="textarea textarea-bordered w-full"
-            />
-            <input
-              type="text"
-              name="skills"
-              placeholder="Enter skills"
-              value={formData.skills}
-              onChange={handleChange}
-              className="input input-bordered w-full"
-            />
-            <input
-              type="text"
-              name="avatar"
-              placeholder="Profile Picture URL"
-              value={formData.avatar}
-              onChange={handleChange}
-              className="input input-bordered w-full"
-            />
-            <button type="submit" className="btn btn-primary w-full">
-              Save Changes
-            </button>
-          </form>
-
-          {/* Success Alert */}
-          {saved && (
-            <div
-              className="alert alert-success mt-4 opacity-0 animate-fadeIn"
-              style={{ animation: "fadeIn 0.5s forwards" }}
-            >
-              ✅ Profile updated successfully!
-            </div>
-          )}
-        </div>
+    <div className="flex min-h-screen p-6 gap-6">
+      {/* Left Panel - Form */}
+      <div className="flex-1 bg-base-200 p-6 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-bold mb-4">Edit Profile</h2>
+        <input name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First Name" className="input w-full mb-2" />
+        <input name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last Name" className="input w-full mb-2" />
+        <input name="age" value={formData.age} onChange={handleChange} placeholder="Age" className="input w-full mb-2" />
+        <input name="gender" value={formData.gender} onChange={handleChange} placeholder="Gender" className="input w-full mb-2" />
+        <input name="photo" value={formData.photo} onChange={handleChange} placeholder="Photo URL" className="input w-full mb-2" />
+        <textarea name="about" value={formData.about} onChange={handleChange} placeholder="About" className="textarea w-full mb-2" />
+        <button onClick={handleSave} className="btn btn-primary w-full">Save Profile</button>
       </div>
 
-      {/* Inline CSS for smooth fade in */}
-      <style>{`
-        @keyframes fadeIn {
-          to { opacity: 1; }
-        }
-      `}</style>
+      {/* Right Panel - Live Preview */}
+      <div className="flex-1 bg-base-200 p-6 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-bold mb-4">Preview</h2>
+        <div className="flex flex-col items-center">
+          <img src={formData.photo || "https://via.placeholder.com/150"} alt="avatar" className="w-48 h-48 rounded-full mb-4 object-cover" />
+          <h3 className="text-xl font-semibold">{formData.firstName} {formData.lastName}</h3>
+          <p className="text-sm opacity-80">{formData.age}, {formData.gender}</p>
+          <p className="mt-2 text-center">{formData.about}</p>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default ProfileEdit;
+export default ProfilePage;
