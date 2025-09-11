@@ -8,6 +8,7 @@ import Feed from "./Components/Feed";
 import Contact from "./Components/Contact";
 import MatchPage from "./Components/MatchPage";
 import ProfilePage from "./Components/ProfilePage";
+import ChatPage from "./Components/ChatPage";
 
 function AppContent() {
   const user = useSelector((state) => state.user.user);
@@ -24,6 +25,7 @@ function AppContent() {
         <Route path="/matches" element={<MatchPage />}/>
         <Route path="/profile" element={<ProfilePage />}/>
         <Route path="/contact" element={<Contact />}/>
+        <Route path="/chat/:matchId" element={<ChatPage />}/>
         </>)
         : (<Route path="*" element={<Navigate to={"/login"}/>} replace/>
         )}
