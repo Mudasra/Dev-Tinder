@@ -3,11 +3,9 @@ import { useDispatch } from "react-redux";
 import { likeProfile, passProfile } from "../utils/feedSlice";
 import { useNavigate } from "react-router-dom";
 
-const SwipeActions = () => {
+const SwipeActions = ({m}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-    // const m = useSelector((state) => state.chat.chats.matches);
-
 
   return (
     <div className="flex gap-6 mt-4">
@@ -23,7 +21,7 @@ const SwipeActions = () => {
       >
         ❤️ Like
       </button>
-      <button onClick={() => navigate(`/chat/{$m.id}`)} className="btn btn-info btn-outline w-24">💭 Chat</button>
+      <button onClick={() => navigate(`/chat/${m.id}`)} className="btn btn-info btn-outline w-24">💭 Chat</button>
     </div>
   );
 };

@@ -15,7 +15,6 @@ const ChatPage = () => {
     state.feed.matches.find((m) => m.id === parseInt(matchId, 10))
   );
 
-  // ✅ normalize matchId as string for chats
   const messages = useSelector((state) => state.chat.chats[String(matchId)]) || [];
 
   const handleSend = (text) => {
