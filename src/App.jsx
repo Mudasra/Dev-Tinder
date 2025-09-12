@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Body from "./Components/Body";
 import Login from "./Components/Login";
 import NavBar from "./Components/NavBar";
@@ -12,10 +12,11 @@ import ChatPage from "./Components/ChatPage";
 
 function AppContent() {
   const user = useSelector((state) => state.user.user);
+  const location = useLocation();
 
   return (
     <>
-      <NavBar />
+      {location.pathname.startsWith("/chat") ? null : <NavBar />}
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace/>} />
         <Route path="/login" element={<Login />} />

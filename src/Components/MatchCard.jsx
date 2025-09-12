@@ -46,7 +46,7 @@ const MatchCard = () => {
                   >
                     ✕
                   </button>
-                  <button className="btn btn-soft btn-info absolute bottom-8 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 hover:transition-colors" onClick={() => Navigate(`/chat/${m.id}`)}>Chat</button>
+                  <button className="btn btn-soft w-20 btn-info absolute bottom-8 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 hover:transition-colors" onClick={() => Navigate(`/chat/${m.id}`)}>Chat</button>
                 </div>
               </div>
             </div>

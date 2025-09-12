@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { likeProfile, passProfile } from "../utils/feedSlice";
 import { useNavigate } from "react-router-dom";
 
-const SwipeActions = ({m}) => {
+const SwipeActions = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const SwipeActions = ({m}) => {
       >
         ❤️ Like
       </button>
-      <button onClick={() => navigate(`/chat/${m.id}`)} className="btn btn-info btn-outline w-24">💭 Chat</button>
+      <button onClick={() => navigate(`/chat/{$m.id}`)} className="btn btn-info btn-outline w-24">💭 Chat</button>
     </div>
   );
 };
