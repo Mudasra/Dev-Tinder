@@ -8,7 +8,7 @@ const ChatMessages = ({ messages }) => {
   } , [messages])
 
   return (
-  <div className="relative overflow-y-auto h-screen w-full p-4 bg-cover bg-[url('https://i.pinimg.com/1200x/f3/e7/44/f3e744a26cdf818959024ebcf4c641bc.jpg')]">
+  <div className="relative overflow-y-auto h-screen w-full p-4 bg-cover bg-base-100">
       {messages.map((msg, i) => (
         <div
           key={i}
