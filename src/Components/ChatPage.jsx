@@ -12,28 +12,35 @@ const ChatPage = () => {
   const dispatch = useDispatch();
 
   const match = useSelector((state) =>
-    state.feed.matches.find((m) => m.id === parseInt(matchId))
+    state.feed.matches.find((m) => m.id === parseInt(matchId, 10))
   );
 
-  const messages = useSelector((state) => state.chat.chats[matchId]) || [];
+  // ✅ normalize matchId as string for chats
+  const messages = useSelector((state) => state.chat.chats[String(matchId)]) || [];
 
   const handleSend = (text) => {
     if (!text.trim()) return;
-    dispatch(sendMessage({ matchId, sender: "me", text }));
+    dispatch(sendMessage({ matchId: String(matchId), sender: "me", text }));
   };
 
   useEffect(() => {
-    if(!match) return;
+    if (!match) return;
 
     const lastMessage = messages[messages.length - 1];
     if (lastMessage && lastMessage.sender === "me") {
-    const timer = setTimeout(() => {
-      dispatch(sendMessage({ matchId, sender: match.name, text: "Got it!" }));
-    }, 1500);
+      const timer = setTimeout(() => {
+        dispatch(
+          sendMessage({
+            matchId: String(matchId),
+            sender: match.name,
+            text: " Mauris a magna non neque porta iaculis.",
+          })
+        );
+      }, 1500);
 
-    return () => clearTimeout(timer);
-}
-  }, [messages, matchId, match.name, dispatch]);
+      return () => clearTimeout(timer);
+    }
+  }, [messages, matchId, match, dispatch]);
 
   if (!match) {
     return (
@@ -48,65 +55,14 @@ const ChatPage = () => {
       </div>
     );
   }
+
   return (
-    <div>
-      <div className="flex flex-col h-screen">
-        <ChatHeader match={match} />
-        <ChatMessages messages={messages} />
-        <ChatInput onSend={handleSend} />
-      </div>
+    <div className="flex flex-col h-screen">
+      <ChatHeader match={match} />
+      <ChatMessages messages={messages} />
+      <ChatInput onSend={handleSend} />
     </div>
   );
 };
 
 export default ChatPage;
-
-// import React from "react";
-// import { useParams, useNavigate } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import ChatHeader from "./ChatHeader";
-// import ChatMessages from "./ChatMessages";
-// import ChatInput from "./ChatInput";
-// import { sendMessage } from "../utils/chatSlice";
-
-// const ChatPage = () => {
-//   const { matchId } = useParams();
-//   const navigate = useNavigate();
-//   const dispatch = useDispatch();
-
-//   const match = useSelector((state) =>
-//     state.feed.matches.find((m) => m.id === parseInt(matchId))
-//   );
-
-//   const messages = useSelector((state) => state.chat.chats[matchId] || []);
-
-//   const handleSend = (text) => {
-//     if (!text.trim()) return;
-//     dispatch(sendMessage({ matchId, sender: "me", text }));
-//     // simulate reply
-//     setTimeout(() => {
-//       dispatch(sendMessage({ matchId, sender: match.name, text: "Got it 👍" }));
-//     }, 1500);
-//   };
-
-//   if (!match) {
-//     return (
-//       <div className="flex items-center justify-center h-screen">
-//         <p>No match found.</p>
-//         <button className="btn ml-4" onClick={() => navigate("/matches")}>
-//           Go Back
-//         </button>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="flex flex-col h-screen">
-//       <ChatHeader match={match} onBack={() => navigate("/matches")} />
-//       <ChatMessages messages={messages} />
-//       <ChatInput onSend={handleSend} />
-//     </div>
-//   );
-// };
-
-// export default ChatPage;

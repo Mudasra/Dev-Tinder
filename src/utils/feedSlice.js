@@ -4,8 +4,6 @@ import dummyProfiles from "./DummyProfiles";
 const savedMatches = JSON.parse(localStorage.getItem("matches") || "[]")
 
 const feedSlice = createSlice({
-
-
   name: "feed",
   initialState: {
     profiles: dummyProfiles,
@@ -37,7 +35,6 @@ const feedSlice = createSlice({
       state.currentIndex = (state.currentIndex + 1) % state.profiles.length;
     },
     removeMatch: (state , action) => {
-            console.log("removing the id" , action.payload)
       state.matches = state.matches.filter((m) => m.id !== action.payload);
       localStorage.setItem("matches" , JSON.stringify(state.matches));
     },

@@ -19,13 +19,13 @@ const ChatSlice = createSlice({
                 time : new Date().toISOString(),
             }
 
-            if(!state.chat[matchId]){
+            if(!state.chats[matchId]){
                 state.chats[matchId] = [];
             }
 
             state.chats[matchId].push(message);
 
-            localStorage.setItem("chat" , JSON.stringify(state.chats));
+            localStorage.setItem("chats" , JSON.stringify(state.chats));
         },
         clearChat: (state , action) => {
             delete state.chats[action.payload];

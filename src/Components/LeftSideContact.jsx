@@ -19,7 +19,7 @@ const LeftSideContact = () => {
         <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
         <p className="opacity-80 mb-6">
           {" "}
-          Have questions or feedback? Drop a message or reach me via the details
+          Have questions or feedback? Drop a message or reach us via the details
           below.
         </p>
         <ul className="space-y-3">
