@@ -24,14 +24,32 @@
 - loop profiles in cicular fashion
 - match popup
 - like / pass action
-- Matches Page → displays all liked profiles.
+
+# Matches Page 
+→ displays all liked profiles.
 - clears the whole match page in one go 
 - remove matches individually
-- contact page - split into two sections - contact info & contact form
+
+# contact page 
+- split into two sections - contact info & contact form
 - Form feedback: After submission, a success alert is shown.
-- Profile page > Allows the logged-in user to view and edit their profile.
+
+# Profile page 
+ Allows the logged-in user to view and edit their profile.
 - Left panel: Editable fields for the logged-in user.
 - Right panel: Live preview of the profile that updates dynamically as the user types.
+
+# Chat Page
+- Clicking a match opens the Chat Page for that profile
+- real-time chat (frontend-only)
+- Chat history is persisted in localStorage
+- Messages are styled as chat bubbles
+- Messages are stored in Redux and synced with localStorage
+- Navigation is handled with React Router → /chat/:id
+- Limitations: 
+- No backend or WebSocket support (currently frontend-only simulation)
+
+
 
 
 

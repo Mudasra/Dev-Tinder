@@ -27,12 +27,12 @@ const ChatSlice = createSlice({
 
             localStorage.setItem("chats" , JSON.stringify(state.chats));
         },
-        clearChat: (state , action) => {
-            delete state.chats[action.payload];
+        clearAllChat: (state) => {
+            state.chats = {};
             localStorage.setItem("chats" , JSON.stringify(state.chats));
         }        
     }
 })
-export const {clearChat , sendMessage} = ChatSlice.actions;
+export const {clearAllChat , sendMessage} = ChatSlice.actions;
 
 export default ChatSlice.reducer;
