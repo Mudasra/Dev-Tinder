@@ -29,5 +29,30 @@ export const createTaskSlice = (set, get) => ({
     const updated = get().tasks.filter((t) => t.id !== taskId);
     set({ tasks: updated });
     persistState(STORAGE_KEY, updated);
-  }
+  },
+
+  reorderTasks: ({ taskId, toColumn, toIndex }) => {
+  const tasks = get().tasks.slice(); // shallow copy
+  const task = tasks.find(t => t.id === taskId);
+  if (!task) return;
+
+  // Remove task from old position
+  const oldIndex = tasks.findIndex(t => t.id === taskId);
+  tasks.splice(oldIndex, 1);
+
+  // Change column if needed
+  task.column = toColumn;
+
+  // Insert at new index (only among tasks of the same column)
+  let columnTasks = tasks.filter(t => t.column === toColumn);
+  const beforeTask = columnTasks[toIndex];
+  const insertIndex = beforeTask ? tasks.indexOf(beforeTask) : tasks.length;
+  tasks.splice(insertIndex, 0, task);
+
+  set({ tasks });
+  persistState('jira-tasks', tasks);
+},
+
+  getTasksByProjectAndColumn: (projectId, column) => 
+  get().tasks.filter(t => t.projectId === projectId && t.column === column)
 });

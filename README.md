@@ -42,6 +42,16 @@
 - BoardColumn renders tasks per column
 - Responsive and themeable via Tailwind + DaisyUI
 
+- Implemented sortable TaskCards with useSortable
+
+- Added reorderTasks to Zustand task slice for state updates
+
+- BoardPage handles onDragEnd to reorder tasks
+
+- Tasks persist to localStorage
+
+- Handles cross-column moves and vertical reordering
+
 ## Development
 ```bash
 npm install
