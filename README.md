@@ -31,6 +31,17 @@
 - DaisyUI for components and themes
 - Responsive grid for project list
 
+## Kanban Board
+
+- Columns dynamically loaded from project state  
+- Tasks normalized in Zustand store:
+  - id, title, priority, type, assignee, column, projectId
+- TaskModal handles creation and editing:
+  - title, priority, type, assignee, column assignment
+- Tasks persist to localStorage
+- BoardColumn renders tasks per column
+- Responsive and themeable via Tailwind + DaisyUI
+
 ## Development
 ```bash
 npm install
