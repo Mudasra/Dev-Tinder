@@ -11,25 +11,25 @@
 ## Architecture Overview
 
 ### State Management
-Global state is handled using Zustand with slice-based architecture.
-
-Slices:
-- projectSlice: manages project CRUD and persistence
-- uiSlice: manages UI state such as theme
-
-State is persisted to localStorage manually to keep control explicit and debuggable.
+- Zustand slices:
+  - projectSlice: manages projects CRUD
+  - uiSlice: manages theme
+- State persisted manually via localStorage
 
 ### Routing
-React Router with nested layouts:
-- `/` Project list
-- `/projects/:id/board`
-- `/projects/:id/backlog`
-- `/projects/:id/settings`
+- `/` → Project List
+- `/projects/:id/board` → Kanban Board
+- `/projects/:id/backlog` → Backlog
+- `/projects/:id/settings` → Project Settings
+
+### Components
+- `ProjectCard` → displays project info with edit/delete actions
+- `ProjectModal` → reusable modal for creating or editing projects
 
 ### Styling
-- Tailwind CSS for layout and utilities
-- DaisyUI for accessible components and theming
-- Light and dark themes supported
+- Tailwind CSS for utilities and layout
+- DaisyUI for components and themes
+- Responsive grid for project list
 
 ## Development
 ```bash
