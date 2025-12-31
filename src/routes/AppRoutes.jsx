@@ -13,6 +13,7 @@ function AppRoutes() {
         <Route path="/projects/:projectId/board" element={<BoardPage />} />
         <Route path="/projects/:projectId/backlog" element={<BacklogPage />} />
         <Route path="/projects/:projectId/settings" element={<SettingsPage />} />
+        <Route path="/projects/:projectId/backlog" element={<BacklogPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
